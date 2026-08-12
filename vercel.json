@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/elmitre", "destination": "/elmitre/index.html" },
-    { "source": "/elmitre/(.*)", "destination": "/elmitre/index.html" }
+    { "source": "/elmitre/(.*)", "destination": "/elmitre/index.html" },
+    { "source": "/owners", "destination": "/owners.html" }
   ]
 }
