@@ -373,7 +373,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
     <p class="contact-sub">Si te interesa saber más sobre nuestro servicio, dejá tu número y te contamos cómo podríamos hacerlo funcionar para tu local.</p>
     <div class="contact-row" id="contactRow">
       <span class="contact-prefix">📱 +549</span>
-      <input class="contact-input" type="tel" id="phoneInput" placeholder="11 1234 5678" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'');validateTel()" onblur="validateTel()" />
+      <input class="contact-input" type="tel" id="phoneInput" placeholder="11 1234 5678" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'');validateTel();" onblur="validateTel()" onkeydown="if(event.key==='Enter')submitContact()" />
       <button class="contact-btn" id="contactBtn" onclick="submitContact()">Que me llamen →</button>
     </div>
     <div id="tel-feedback" style="font-size:11px;color:var(--muted);margin-top:6px;min-height:16px;font-style:italic;text-align:right;padding-right:4px;"></div>
@@ -419,16 +419,17 @@ function validateTel() {
     feedback.textContent = val.length + ' de 10 dígitos — número incompleto';
     feedback.style.color = 'var(--danger)';
   } else {
-    feedback.textContent = '✓ +549 ' + val + ' — listo';
+    feedback.textContent = '✓  +549 ' + val + ' — listo';
     feedback.style.color = 'var(--gold2)';
   }
 }
 
-async function submitContact() {
+async async function submitContact() {
   var phone = document.getElementById('phoneInput').value.trim();
   if(!phone || phone.length < 10) {
     document.getElementById('tel-feedback').textContent = 'Por favor ingresá los 10 dígitos de tu número.';
     document.getElementById('tel-feedback').style.color = 'var(--danger)';
+    document.getElementById('phoneInput').focus();
     return;
   }
   document.getElementById('contactBtn').disabled = true;
@@ -509,3 +510,4 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 </script>
 </body>
 </html>
+
