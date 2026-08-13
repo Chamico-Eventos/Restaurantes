@@ -426,7 +426,7 @@ function validateTel() {
   }
 }
 
-async async function submitContact() {
+async function submitContact() {
   var phone = document.getElementById('phoneInput').value.trim();
   if(!phone || phone.length < 10) {
     document.getElementById('tel-feedback').textContent = 'Por favor ingresá los 10 dígitos de tu número.';
@@ -449,8 +449,6 @@ async async function submitContact() {
   document.getElementById('tel-feedback').style.display = 'none';
   document.getElementById('contactSent').style.display = 'block';
 }
-  });
-});
 
 function updateProgress() {
   const pillsDone = REQUIRED_PILLS.filter(q => answers[String(q)]).length;
@@ -512,4 +510,5 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 </script>
 </body>
 </html>
+
 
