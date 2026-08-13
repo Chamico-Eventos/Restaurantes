@@ -404,6 +404,8 @@ document.querySelectorAll('.pill').forEach(btn => {
     answers[q] = btn.dataset.v;
     document.getElementById('err-'+q).classList.remove('show');
     updateProgress();
+  });
+});
 
 function validateTel() {
   var input = document.getElementById('phoneInput');
@@ -510,3 +512,4 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 </script>
 </body>
 </html>
+
