@@ -35,7 +35,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
 .pill-group{display:flex;flex-wrap:wrap;gap:8px;}
 .pill{padding:9px 18px;border-radius:99px;border:1px solid var(--border2);background:var(--surface);color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;transition:all 0.15s;-webkit-tap-highlight-color:transparent;}
 .pill:hover{border-color:rgba(201,168,76,0.35);color:var(--ink2);background:var(--surface2);}
-.pill.sel{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2);font-weight:600;}
+.pill.sel{background:var(--gold-dim);border-color:var(--gold);color:var(--gold2);font-weight:600;}.pill-hint{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:10px;}
 .star-group{display:flex;gap:8px;}
 .star{font-size:34px;cursor:pointer;color:rgba(255,255,255,0.1);transition:color 0.1s,transform 0.12s;-webkit-tap-highlight-color:transparent;user-select:none;line-height:1;}
 .star:hover{transform:scale(1.2);}
@@ -170,6 +170,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
     <button type="button" class="pill" data-q="6" data-v="Almuerzo">Almuerzo</button>
     <button type="button" class="pill" data-q="6" data-v="Merienda">Merienda</button>
     <button type="button" class="pill" data-q="6" data-v="Cena">Cena</button>
+    <button type="button" class="pill" data-q="6" data-v="Trasnoche">Trasnoche</button>
   </div>
   <div class="error-msg" id="err-6">Por favor elegí una opción</div>
 </div>
@@ -247,8 +248,20 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
 <div class="q-divider"></div>
 
 <!-- Q12: Amabilidad mozos ★ -->
+<!-- Q97: Limpieza baños (estrella, opcional) -->
+<div class="q-block" id="qb-97">
+  <div class="q-label"><span class="q-num">13</span>¿Cómo calificarías la limpieza de los baños?<span class="req-dot"></span></div>
+  <div class="star-group" id="q97" data-q="97">
+    <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span>
+    <span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span>
+  </div>
+  <div class="star-hint" id="hint-97"></div>
+  <div class="error-msg" id="err-97">Por favor calificá con estrellas</div>
+</div>
+<div class="q-divider"></div>
+
 <div class="q-block" id="qb-12">
-  <div class="q-label"><span class="q-num">13</span>¿Cómo calificarías la amabilidad del personal?<span class="req-dot"></span></div>
+  <div class="q-label"><span class="q-num">14</span>¿Cómo calificarías la amabilidad del personal?<span class="req-dot"></span></div>
   <div class="star-group" id="q12" data-q="12">
     <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span>
     <span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span>
@@ -260,7 +273,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
 
 <!-- Q13: Espera pedido -->
 <div class="q-block" id="qb-13">
-  <div class="q-label"><span class="q-num">14</span>¿Cuánto tardaron en tomarte el pedido?<span class="req-dot"></span></div>
+  <div class="q-label"><span class="q-num">15</span>¿Cuánto tardaron en tomarte el pedido?<span class="req-dot"></span></div>
   <div class="pill-group">
     <button type="button" class="pill" data-q="13" data-v="Menos de 5 min">Menos de 5 min</button>
     <button type="button" class="pill" data-q="13" data-v="5 – 10 min">5 – 10 min</button>
@@ -359,9 +372,51 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
 </div>
 <div class="q-divider"></div>
 
+<!-- Q95: Géneros musicales (multi-select, opcional) -->
+<div class="q-block" id="qb-95">
+  <div class="q-label"><span class="q-num">22</span>¿Qué géneros musicales escuchás regularmente?</div>
+  <div class="pill-hint">Podés elegir más de una</div>
+  <div class="pill-group">
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Rock">Rock</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Pop">Pop</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Jazz / Blues">Jazz / Blues</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Folklore / Tango">Folklore / Tango</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Cumbia / Cuarteto">Cumbia / Cuarteto</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Electrónica / DJ">Electrónica / DJ</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Hip-Hop / Rap">Hip-Hop / Rap</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Metal">Metal</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Reggae / Ska">Reggae / Ska</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Clásica">Clásica</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Indie / Alternativo">Indie / Alternativo</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Otro">Otro</button>
+  </div>
+</div>
+<div class="q-divider"></div>
+
+<!-- Q96: Tipo de evento (multi-select, opcional) -->
+<div class="q-block" id="qb-96">
+  <div class="q-label"><span class="q-num">23</span>¿A qué tipo de evento vendrías?</div>
+  <div class="pill-hint">Podés elegir más de una</div>
+  <div class="pill-group">
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Bandas de Rock">Bandas de Rock</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Jazz / Blues">Jazz / Blues</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Folklore / Tango">Folklore / Tango</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Stand Up">Stand Up</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Obra de teatro">Obra de teatro</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Danza / Performance">Danza / Performance</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="DJ / Electrónica">DJ / Electrónica</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Jam Sessions">Jam Sessions</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Exp. de Arte">Exp. de Arte</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Festival de Bandas">Festival de Bandas</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Peña">Peña</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Otro">Otro</button>
+  </div>
+</div>
+<div class="q-divider"></div>
+
 <!-- Q98: Contacto (opcional) -->
 <div class="q-block" id="qb-98">
-  <div class="q-label"><span class="q-num">22</span>¿Querés recibir info sobre los próximos eventos? Dejanos tu contacto</div>
+  <div class="q-label"><span class="q-num">24</span>¿Querés recibir info sobre los próximos eventos? Dejanos tu contacto</div>
   <div class="contact-group">
     <div class="contact-row">
       <span class="contact-prefix">📱 +549</span>
@@ -378,7 +433,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
 
 <!-- Q99: Comentario -->
 <div class="q-block" id="qb-99">
-  <div class="q-label"><span class="q-num">23</span>¿Algún comentario adicional?</div>
+  <div class="q-label"><span class="q-num">25</span>¿Algún comentario adicional?</div>
   <textarea class="free-text" id="q99" placeholder="Tu respuesta… (opcional)" rows="4" maxlength="250"
     oninput="document.getElementById('cc-99').textContent=this.value.length+' / 250'"></textarea>
   <div class="char-count" id="cc-99">0 / 250</div>
@@ -403,7 +458,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
 <script>
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxRxrHcw42b-YMNmVyLZkk7Ub8XnsuzGoWqjSQAs-Bq2GuPxHHorG1I0RlQ9KsMiPfHFw/exec';
-var REQUIRED = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+var REQUIRED = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,97];
 var STAR_HINTS = ['','Muy malo','Malo','Regular','Bueno','Excelente'];
 var answers = {};
 
@@ -430,7 +485,7 @@ if (logoParam) {
 }
 
 // ── SINGLE-SELECT PILLS ───────────────────────────────────────────────────────
-document.querySelectorAll('.pill').forEach(function(btn) {
+document.querySelectorAll('.pill:not(.multi-pill)').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var q = btn.dataset.q;
     document.querySelectorAll('.pill[data-q="'+q+'"]').forEach(function(b) { b.classList.remove('sel'); });
@@ -442,6 +497,16 @@ document.querySelectorAll('.pill').forEach(function(btn) {
 });
 
 // ── STARS ─────────────────────────────────────────────────────────────────────
+// Multi-select pills
+document.querySelectorAll('.multi-pill').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var q = btn.dataset.q;
+    btn.classList.toggle('sel');
+    var sel = [].slice.call(document.querySelectorAll('.multi-pill[data-q="'+q+'"].sel')).map(function(b){return b.dataset.v;});
+    answers[q] = sel.length ? sel.join(' | ') : '';
+  });
+});
+
 document.querySelectorAll('.star-group').forEach(function(group) {
   var q = group.dataset.q;
   var stars = group.querySelectorAll('.star');
@@ -529,6 +594,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     '¿Cómo calificarías la relación precio-calidad?': answers['9'] || '',
     '¿Cómo calificarías el ambiente y comodidad?': answers['10'] || '',
     '¿Cómo calificarías la limpieza del lugar?': answers['11'] || '',
+    '¿Cómo calificarías la limpieza de los baños?': answers['97'] || '',
     '¿Cómo calificarías la amabilidad del personal?': answers['12'] || '',
     '¿Cuánto tardaron en tomarte el pedido?': answers['13'] || '',
     '¿Cuánto tardaron en traerte la comida?': answers['14'] || '',
@@ -539,6 +605,8 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     '¿Lo recomendarías a un amigo?': answers['19'] || '',
     '¿Volverías?': answers['20'] || '',
     '¿Cómo calificarías la calidad de los tragos?': answers['21'] || '',
+    '¿Qué géneros musicales escuchás regularmente?': answers['95'] || '',
+    '¿A qué tipo de evento vendrías?': answers['96'] || '',
     'Teléfono de contacto': document.getElementById('q98-tel').value ? '+549' + document.getElementById('q98-tel').value : '',
     'Email de contacto': document.getElementById('q98-email').value || '',
     '¿Algún comentario adicional?': document.getElementById('q99').value || ''
@@ -554,10 +622,12 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
   document.querySelector('.progress-wrap').style.display = 'none';
   document.getElementById('siteHeader').style.display = 'none';
   document.getElementById('thanks').classList.add('show');
+  window.scrollTo({top: 0, behavior: 'smooth'});
 });
 
 updateProgress();
 </script>
 </body>
 </html>
+
 
