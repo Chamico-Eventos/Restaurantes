@@ -93,6 +93,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
 @keyframes spin{to{transform:rotate(360deg);}}
 
 .powered{text-align:center;padding:32px 24px 0;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+.char-counter{font-size:11px;color:var(--muted);text-align:right;margin-top:6px;font-variant-numeric:tabular-nums;}
 
 /* ── THANKS PAGE ADDITIONS ───── */
 
@@ -311,6 +312,24 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
     <div class="q-label"><span class="q-num">12</span>¿Alguna pregunta específica que querés incluir en la encuesta de tus clientes?</div>
     <textarea class="free-text" id="q12" placeholder="Ej: '¿volvería a venir?' — '¿cómo calificaría el precio/calidad?' — lo que vos querés saber…"></textarea>
   </div>
+  <div class="q-divider"></div>
+
+  <div class="section-label">Tu visión y diferencial</div>
+
+  <!-- Q13 — new -->
+  <div class="q-block" id="qb-13">
+    <div class="q-label"><span class="q-num">13</span>¿Cuál es tu objetivo para los próximos años?</div>
+    <textarea class="free-text" id="q13" maxlength="250" placeholder="Ej: abrir una segunda sucursal, fidelizar a los clientes habituales, mejorar la rentabilidad…" oninput="updateCharCount('q13','cc-13')"></textarea>
+    <div class="char-counter" id="cc-13">0 / 250 caracteres</div>
+  </div>
+  <div class="q-divider"></div>
+
+  <!-- Q14 — new -->
+  <div class="q-block" id="qb-14">
+    <div class="q-label"><span class="q-num">14</span>¿Qué te diferencia del resto de la competencia?</div>
+    <textarea class="free-text" id="q14" maxlength="250" placeholder="Ej: la atención personalizada, la carta artesanal, el ambiente único, el precio accesible…" oninput="updateCharCount('q14','cc-14')"></textarea>
+    <div class="char-counter" id="cc-14">0 / 250 caracteres</div>
+  </div>
 
 
 </div>
@@ -407,6 +426,16 @@ document.querySelectorAll('.pill').forEach(btn => {
   });
 });
 
+function updateCharCount(textareaId, counterId) {
+  const ta = document.getElementById(textareaId);
+  const cc = document.getElementById(counterId);
+  if (ta && cc) {
+    const len = ta.value.length;
+    cc.textContent = len + ' / 250 caracteres';
+    cc.style.color = len >= 240 ? 'var(--danger)' : 'var(--muted)';
+  }
+}
+
 function validateTel() {
   var input = document.getElementById('phoneInput');
   var feedback = document.getElementById('tel-feedback');
@@ -492,6 +521,8 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     'Seguimiento Google Maps': answers['10'] || '',
     'Feedback recurrente': document.getElementById('q11').value || '',
     'Pregunta custom solicitada': document.getElementById('q12').value || '',
+    'Objetivo próximos años': document.getElementById('q13').value || '',
+    'Diferencial vs competencia': document.getElementById('q14').value || '',
   };
 
   lastPayload = payload;
@@ -510,6 +541,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 </script>
 </body>
 </html>
+
 
 
 
