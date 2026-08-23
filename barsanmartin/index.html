@@ -586,7 +586,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
   var now = new Date();
   var payload = {
     'Fecha y hora': now.toLocaleString('es-AR'),
-    'Fecha': now.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}),
+    'Fecha': (function(){var m=String(now.getMonth()+1).padStart(2,'0');var d=String(now.getDate()).padStart(2,'0');var y=now.getFullYear();return m+'/'+d+'/'+y;})(),
     'Cliente': clienteNm,
     'Localidad': localidadNm,
     'Dispositivo': device,
@@ -636,5 +636,6 @@ updateProgress();
 </script>
 </body>
 </html>
+
 
 
