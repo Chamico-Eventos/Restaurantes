@@ -379,8 +379,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
   <div class="pill-group">
     <button type="button" class="pill multi-pill" data-q="95" data-v="Rock">Rock</button>
     <button type="button" class="pill multi-pill" data-q="95" data-v="Pop">Pop</button>
-    <button type="button" class="pill multi-pill" data-q="95" data-v="Jazz / Blues">Jazz / Blues</button>
-    <button type="button" class="pill multi-pill" data-q="95" data-v="Folklore / Tango">Folklore / Tango</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Jazz">Jazz</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Blues">Blues</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Folklore">Folklore</button>
+    <button type="button" class="pill multi-pill" data-q="95" data-v="Tango">Tango</button>
     <button type="button" class="pill multi-pill" data-q="95" data-v="Cumbia / Cuarteto">Cumbia / Cuarteto</button>
     <button type="button" class="pill multi-pill" data-q="95" data-v="Electrónica / DJ">Electrónica / DJ</button>
     <button type="button" class="pill multi-pill" data-q="95" data-v="Hip-Hop / Rap">Hip-Hop / Rap</button>
@@ -399,8 +401,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
   <div class="pill-hint">Podés elegir más de una</div>
   <div class="pill-group">
     <button type="button" class="pill multi-pill" data-q="96" data-v="Bandas de Rock">Bandas de Rock</button>
-    <button type="button" class="pill multi-pill" data-q="96" data-v="Jazz / Blues">Jazz / Blues</button>
-    <button type="button" class="pill multi-pill" data-q="96" data-v="Folklore / Tango">Folklore / Tango</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Jazz">Jazz</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Blues">Blues</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Folklore">Folklore</button>
+    <button type="button" class="pill multi-pill" data-q="96" data-v="Tango">Tango</button>
     <button type="button" class="pill multi-pill" data-q="96" data-v="Stand Up">Stand Up</button>
     <button type="button" class="pill multi-pill" data-q="96" data-v="Obra de teatro">Obra de teatro</button>
     <button type="button" class="pill multi-pill" data-q="96" data-v="Danza / Performance">Danza / Performance</button>
@@ -452,6 +456,14 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-he
   <h2>¡Gracias!</h2>
   <div class="thanks-divider"></div>
   <p>Tu opinión fue registrada.<br>Nos ayuda a mejorar cada día.</p>
+  <div style="margin-top:28px;padding:20px 22px;border-radius:14px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.05);">
+    <p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#f2ead8;margin:0 0 14px;text-align:center;">¿Querés dejar una propina?</p>
+    <div style="text-align:center;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px;"><span style="font-family:'Courier New',monospace;font-size:22px;font-weight:700;color:#e8c97a;letter-spacing:0.06em;">Próximamente</span><button onclick="navigator.clipboard.writeText('Próximamente').then(function(){var b=this;b.textContent='✓ Copiado';setTimeout(function(){b.textContent='Copiar';},2000);}.bind(this))" style="padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:#c4b89a;font-size:11px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;">Copiar</button></div>
+    <div style="display:grid;gap:6px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#6b6150;">Titular</span><span style="font-size:11px;color:#7a7060;">Próximamente</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:#6b6150;">Banco</span><span style="font-size:11px;color:#7a7060;">Próximamente</span></div>
+    </div>
+  </div>
   <div style="margin-top:28px;padding:20px;border-radius:14px;border:1px solid rgba(201,168,76,0.25);background:rgba(201,168,76,0.06);">
     <p style="font-size:14px;color:var(--ink2);margin-bottom:14px;line-height:1.5;">¿Te gustó tu experiencia?<br>Ayudanos a crecer en Google Maps</p>
     <a href="https://www.google.com/maps?cid=5142709118039855760&action=write_review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:99px;background:white;color:#1a1a1a;font-family:Inter,sans-serif;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,0.15);">
@@ -586,7 +598,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
   var now = new Date();
   var payload = {
     'Fecha y hora': now.toLocaleString('es-AR'),
-    'Fecha': (function(){var m=String(now.getMonth()+1).padStart(2,'0');var d=String(now.getDate()).padStart(2,'0');var y=now.getFullYear();return m+'/'+d+'/'+y;})(),
+    'Fecha': now.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}),
     'Cliente': clienteNm,
     'Localidad': localidadNm,
     'Dispositivo': device,
@@ -636,8 +648,3 @@ updateProgress();
 </script>
 </body>
 </html>
-
-
-
-
-
